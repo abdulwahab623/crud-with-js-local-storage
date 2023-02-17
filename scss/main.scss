@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image: linear-gradient(to right,rgb(108, 219, 246) , transparent);
+}
+
+.formDiv{ 
+     
+    background: rgb(223, 223, 223);
+    width: 500px;
+   
+    margin: 90px;
+    padding: 50px;
+    border-radius: 20px;
+}
+.welcomeH{
+    margin: 100px;
+    padding: 100px;
+}
+.formDivv{
+    margin: 90px;
+    padding: 50px;
+    border-radius: 20px;
+    width: 900px;
+    background: rgb(223, 223, 223);
+}
+.btn{
+    margin:0 10px;
+}
+.edit{
+    border-radius: 50px;
+    background: skyblue;
+}
+.logout{
+    margin: 0 20px;
+    background: red;
+}

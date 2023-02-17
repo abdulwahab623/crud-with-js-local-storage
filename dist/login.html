@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="js/bootstrap.bundle.js"></script>
+    <title>Login</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">login </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                   
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <form action="#" class="formDiv">
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" value="" placeholder="Enter @Email"
+                aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" placeholder="Enter Password" value="" id="password">
+        </div>
+
+        <button type="button" onclick="saveData()" id="saveDataa" class="btn btn-primary">Log in</button>
+        <button type="button" onclick="ree()" id="saveDataa" class="btn btn-success">Register</button>
+    </form>
+</body>
+
+<script src="main.js"></script>
+<script>
+    function saveData() {
+        const logemail = document.getElementById("email").value;
+        const logpassword = document.getElementById("password").value;
+
+        //new array that hold local storage data
+        //JSON parsing is the process of converting a JSON object in text format 
+        //to a Javascript object that can be used inside a program.
+        let userRecord = JSON.parse(localStorage.getItem("usersList")) ? JSON.parse(localStorage.getItem("usersList")) : [];
+        if (userRecord.some((v) => { return v.email == logemail && v.password === logpassword })) {
+            alert("successfull login");
+            window.location.href = 'welcome.html';
+        } else {
+            alert('please Register yourSelf');
+        }
+    }
+
+    function ree() {
+        window.location.href = 'Registration.html';
+    }
+
+</script>
+
+</html>

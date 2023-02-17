@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="js/bootstrap.bundle.js"></script>
+    <title>Read & Edit</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Hello </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <button class="btn btn-primary" onclick="back()" aria-current="page" href="welcome.html">Back</button>
+                    <button class="btn btn-danger" onclick="logout()" aria-current="page" href="login.html">log out</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!--table data -->
+
+    <table class="table formDivv" id="users">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody id="result">
+
+        </tbody>
+    </table>
+
+    <form class="formDiv" id="myForm">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control bb" id="name" value="">
+
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control bb" id="email" value="">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="number" class="form-control bb" value="" id="phone">
+            <div id="emailHelp" class="form-text">We'll never share your phone number with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="password1" class="form-label">Password</label>
+            <input type="password" class="form-control bb" value="" id="password">
+        </div>
+
+
+        <button id="Update" class="btn btn-danger">update</button>
+    </form>
+
+
+
+
+    <script>
+
+        // function validateForm(){
+        //     var name = document.getElementById("name").value;
+        //     var email = document.getElementById("email").value;
+        //     var phone = document.getElementById("phone").value;
+        //     if(name ==""){
+        //         alert("name is required");
+        //     return false;
+        //     }
+        //     if(email ==""){
+        //         alert("name is required");
+        //     return false;
+        //     } 
+        //     if(phone ==""){
+        //         alert("name is required");
+        //     return false;
+        //     }
+        // }
+        // function to show data
+        function showData() {
+            // create new array for read data
+            var dataa = [];
+            if (localStorage.getItem("usersList") == null) {
+                dataa = [];
+            } else {
+
+                //assiogn data to new array from local storage
+                dataa = JSON.parse(localStorage.getItem('usersList')); //dataaa new mai data get kia 
+                //table ko data assign kar dia 
+            }
+            //foeEach loop to store data one by one
+            //	element convert [object HTMLInputElement]
+            var infooo = "";
+            dataa.forEach(function (element, index) {
+                infooo += "<tr>";
+                infooo += "<td>" + element.name + "</td>";
+                infooo += "<td>" + element.email + "</td>";
+                infooo += "<td>" + element.phone + "</td>";
+                //index  of specific item is press
+                infooo += '<td><button onClick="updateData(' +
+                    index +
+                    ')" class="btn btn-warning">Edit</button><button onClick="deleteData(' +
+                    index +
+                    ')" class="btn btn-danger">Delete</button> </td>';
+                infooo += "</tr>";
+            });
+
+            // table ky andr show karwa dia
+            document.querySelector("#users").innerHTML = infooo;
+        }
+
+        //   load all data when page load
+        window.onload = function () {
+            showData();
+
+            console.log(table);
+        }
+        //function to delete data
+        function deleteData(index) {
+            //new wali array jo data read k leay banai 
+            var dataa;
+            //condition to dell data 
+            //agar data  null hai local mai  tw khali array show karday blank
+            if (localStorage.getItem("usersList") == null) {
+                dataa = [];
+            } else {
+                //agar null nhi tw jo data hai wo show karday table  mai 
+                dataa = JSON.parse(localStorage.getItem("usersList"))
+            }
+            //array say data dell karny ka method splice is mai index jo hai wo data ka index or 1 say start hota
+            //jo index hoga , or kitni item dell karni
+            dataa.splice(index, 1);
+            //dell kaeny ky bad jo data reh gaya wo local storaye mia set kardy
+            localStorage.setItem("usersList", JSON.stringify(dataa));
+            //phir jo baqi data wo show kardy remaining
+            showData();
+        }
+
+        // update karny ka function
+        //index with given in fun 
+        function updateData(index) {
+            const selectedIndex = index;
+            var dataa = JSON.parse(localStorage.getItem("usersList"));
+            document.getElementById('name').value = dataa[index].name;
+            document.getElementById('email').value = dataa[index].email;
+            document.getElementById('phone').value = dataa[index].phone;
+
+
+            document.querySelector("#Update").onclick = function () {
+                if (selectedIndex == index) {
+                    dataa[index].name = document.getElementById('name').value;
+                    dataa[index].email = document.getElementById('email').value;
+                    dataa[index].phone = document.getElementById('phone').value;
+                    localStorage.setItem("usersList", JSON.stringify(dataa));
+                    alert('updated');
+                    showData();
+                }
+            }
+        }
+
+        function back() {
+        window.location.href = 'welcome.html';
+    }
+    function logout() {
+        window.location.href = 'login.html';
+    }
+
+    </script>
+</body>
+
+</html>

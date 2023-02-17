@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.6/platform.min.js"
+        integrity="sha512-eYPrm8TgYWg3aa6tvSRZjN4v0Z9Qx69q3RhfSj+Mf89QqwOMqmwSlsVqfp4N8NVAcZe/YeUhh9x/nM2CAOp6cA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>welcome </title>
+</head>
+
+<body>
+
+
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Hello </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+
+                    <a class="nav-link active edit" aria-current="page" href="data.html">Edit</a>
+                    <a class="nav-link active logout" aria-current="page" href="login.html">log out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div>Browser : <span class="browser"></span></div>
+    <div>Browser Version : <span class="browserVersion"></span></div>
+    <div>Operating System : <span class="os"></span></div>
+    <h1 class="welcomeH">helloooooo ,How are you?</h1>
+
+    <script>
+
+        const browser = document.querySelector(".browser");
+        const browserVersion = document.querySelector(".browserVersion");
+        const operatingsystem = document.querySelector(".os");
+
+        browser.innerHTML = platform.name;
+        browserVersion.innerHTML = platform.version;
+        operatingsystem.innerHTML = platform.os;
+    </script>
+
+</body>
+
+</html>
